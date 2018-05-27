@@ -59,24 +59,24 @@ energy = model.predict(x_test)
 ```
 
 ## Jupyter Notebook サンプル
-Jupyter notebook での実行サンプルを用意しました。
-このサンプルでは、混合ガウス分布に対して適用した結果となっています。
+Jupyter notebook での[実行サンプル](./Example_DAGMM_ja.ipynb)を用意しました。
+このサンプルでは、混合正規分布に対して適用した結果となっています。
 (sklearn が必要です)
 
 # 補足
-
-# 混合正規分布(GMM)の実装について
+## 混合正規分布(GMM)の実装について
 論文では、エネルギーの定式化で混合正規分布の直接的な表記がされています。
 この算出では、多次元正規分布の逆行列が必要となりますが、場合によっては
 逆行列の計算ができません。
 
 これを避けるために、この実装では共分散行列のコレスキー分解(Cholesky Decomposition)
-を用いています(Tensorflow における GMM の実装でも同様のロジックがあり、参考にしました)
+を用いています([Tensorflow における GMM の実装]((https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/factorization/python/ops/gmm_ops.py))でも同様のロジックがあり、参考にしました)
 
 ``DAGMM.fit()``において、共分散行列のコレスキー分解をしておき、算出された
 三角行列を ``DAGMM.predict()`` で利用しています。
 
 さらに、共分散行列の対角行列にあらかじめ小さな値(1e-3)を加えることで、
 安定的にコレスキー分解ができるようにしています。
-(Tensorflow の GMM でも同様のロジックがあり、DAGMMの別実装の実装者も
+(Tensorflow の GMM でも同様のロジックがあり、
+[DAGMMの別実装の実装者](https://github.com/danieltan07/dagmm)も
 同じ事情について言及しています)

@@ -72,7 +72,7 @@ class CompressionNet:
         # Based on the original paper, features of reconstraction error
         # are composed of these loss functions:
         #  1. loss_E : relative Euclidean distance
-        #  2. loss_C : cosine similarity -> ★★★ 生の cosine か、1から引くのか？
+        #  2. loss_C : cosine similarity
         min_val = 1e-3
         loss_E = dist_x  / (norm_x + min_val)
         loss_C = 0.5 * (1.0 - dot_x / (norm_x * norm_x_dash + min_val))

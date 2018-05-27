@@ -18,16 +18,16 @@ At initialize, you have to specify next 4 variables at least.
 
 - ``comp_hiddens`` : list of int
   - sizes of hidden layers of compression network
-  - For example, if the sizes are ``[n1, n2]``,  
-  structure of compression network is:  
+  - For example, if the sizes are ``[n1, n2]``,
+  structure of compression network is:
   ``input_size -> n1 -> n2 -> n1 -> input_sizes``
 - ``comp_activation`` : function
   - activation function of compression network
 - ``est_hiddens`` : list of int
   - sizes of hidden layers of estimation network.
   - The last element of this list is assigned as n_comp.
-  - For example, if the sizes are ``[n1, n2]``,  
-    structure of estimation network is:  
+  - For example, if the sizes are ``[n1, n2]``,
+    structure of estimation network is:
     ``input_size -> n1 -> n2 (= n_comp)``
 - ``est_activation`` : function
   - activation function of estimation network
@@ -58,10 +58,11 @@ energy = model.predict(x_test)
 ```
 
 ## Jupyter Notebook Example
-You can use jupyter notebook example.
+You can use [jupyter notebook example](Example_DAGMM.ipynb).
 This example uses random samples of mixture of gaussian.
 (need sklearn)
 
+# Notes
 ## GMM Implementation
 The equation to calculate "energy" for each sample in the original paper
 uses direct expression of multivariate gaussian distribution which
@@ -69,12 +70,12 @@ has covariance matrix inversion, but it is impossible sometimes
 because of singularity.
 
 Instead, this implementation uses cholesky decomposition of covariance matrix.
-(this is based on GMM code in Tensorflow code)
+(this is based on [GMM code in Tensorflow code](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/factorization/python/ops/gmm_ops.py))
 
-In DAGMM.fit(), it generates and stores triangular matrix of cholesky decomposition
-of covariance matrix, and it is used in DAGMM.predict(),
+In ``DAGMM.fit()``, it generates and stores triangular matrix of cholesky decomposition
+of covariance matrix, and it is used in ``DAGMM.predict()``,
 
 In addition to it, small perturbation (1e-3) is added to diagonal
 elements of covariance matrix for more numerical stability
-(it is same as Tensorflow GMM implementation, and another author of
-DAGMM also points it out)
+(it is same as Tensorflow GMM implementation,
+and [another author of DAGMM](https://github.com/danieltan07/dagmm) also points it out)
