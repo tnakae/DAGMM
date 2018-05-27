@@ -62,6 +62,7 @@ You can use [jupyter notebook example](Example_DAGMM.ipynb).
 This example uses random samples of mixture of gaussian.
 (need sklearn)
 
+# Notes
 ## GMM Implementation
 The equation to calculate "energy" for each sample in the original paper
 uses direct expression of multivariate gaussian distribution which
