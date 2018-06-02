@@ -11,6 +11,7 @@ this is UNOFFICIAL implementation.
 - python 3
 - Tensorflow
 - Numpy
+- sklearn
 
 # Usage instructions
 To use DAGMM model, you need to create "DAGMM" object.
@@ -35,7 +36,7 @@ At initialize, you have to specify next 4 variables at least.
 Then you fit the training data, and predict to get energies
 (anomaly score). It looks like the model interface of scikit-learn.
 
-For more details, please check out dagmm/dagmm.py docstrings.
+For more details, please check out [dagmm/dagmm.py](dagmm/dagmm.py) docstrings.
 
 # Example
 ## Small Example
@@ -55,12 +56,17 @@ model.fit(x_train)
 # Evaluate energies
 # (the more the energy is, the more it is anomary)
 energy = model.predict(x_test)
+
+# Save fitted model to the directory
+model.save("./fitted_model")
+
+# Restore saved model from dicrectory
+model.restore("./fitted_model")
 ```
 
 ## Jupyter Notebook Example
 You can use [jupyter notebook example](Example_DAGMM.ipynb).
 This example uses random samples of mixture of gaussian.
-(need sklearn)
 
 # Notes
 ## GMM Implementation

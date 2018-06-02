@@ -12,6 +12,7 @@ DAGMM (Deep Autoencoding Gaussian Mixture Model) の Tensorflow 実装です。
 - python 3
 - Tensorflow
 - Numpy
+- sklearn
 
 # 利用方法
 DAGMMを利用するには、まずDAGMMオブジェクトを生成します。
@@ -36,7 +37,7 @@ DAGMMを利用するには、まずDAGMMオブジェクトを生成します。
 その後、スコアを算出したいデータに対して予測(predict)を行います。
 (scikit-learnにおける予測モデルの利用方法と似ています)
 
-オプションの詳細については dagmm/dagmm.py の docstring を参照してください。
+オプションの詳細については [dagmm/dagmm.py](dagmm/dagmm.py) の docstring を参照してください。
 
 # 利用例
 ## シンプルな例
@@ -56,12 +57,17 @@ model.fit(x_train)
 # エネルギーの算出
 # (エネルギーが高いほど異常)
 energy = model.predict(x_test)
+
+# 学習済みモデルをディレクトリに保存する
+model.save("./fitted_model")
+
+# 学習済みモデルをディレクトリから読み込む
+model.restore("./fitted_model")
 ```
 
 ## Jupyter Notebook サンプル
 Jupyter notebook での[実行サンプル](./Example_DAGMM_ja.ipynb)を用意しました。
 このサンプルでは、混合正規分布に対して適用した結果となっています。
-(sklearn が必要です)
 
 # 補足
 ## 混合正規分布(GMM)の実装について
