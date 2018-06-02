@@ -156,10 +156,16 @@ class DAGMM:
         energies : array-like, shape (n_samples)
             Calculated sample energies.
         """
+        if self.sess is None:
+            raise Exception("Trained model does not exist.")
+
         energies = self.sess.run(self.energy, feed_dict={self.input:x})
         return energies
 
     def save(self, fdir):
+        if self.sess is None:
+            raise Exception("Trained model does not exist.")
+
         if not exists(fdir):
             makedirs(fdir)
 
