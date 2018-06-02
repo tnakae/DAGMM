@@ -163,6 +163,16 @@ class DAGMM:
         return energies
 
     def save(self, fdir):
+        """ Save trained model to designated directory.
+        This method have to be called after training.
+        (If not, throw an exception)
+
+        Parameters
+        ----------
+        fdir : str
+            Path of directory trained model is saved.
+            If not exists, it is created automatically.
+        """
         if self.sess is None:
             raise Exception("Trained model does not exist.")
 
@@ -173,6 +183,14 @@ class DAGMM:
         self.saver.save(self.sess, model_path)
 
     def restore(self, fdir):
+        """ Restore trained model from designated directory.
+
+        Parameters
+        ----------
+        fdir : str
+            Path of directory trained model is saved.
+        """
+
         model_path = join(fdir, self.MODEL_FILENAME)
         meta_path = model_path + ".meta"
 
