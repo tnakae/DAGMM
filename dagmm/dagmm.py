@@ -176,8 +176,10 @@ class DAGMM:
         model_path = join(fdir, self.MODEL_FILENAME)
         meta_path = model_path + ".meta"
 
-        self.sess = tf.Session()
-        self.saver = tf.train.import_meta_graph(meta_path)
-        self.saver.restore(self.sess, model_path)
+        with tf.Graph().as_default() as graph:
+            self.graph = graph
+            self.sess = tf.Session(graph=graph)
+            self.saver = tf.train.import_meta_graph(meta_path)
+            self.saver.restore(self.sess, model_path)
 
-        self.input, self.energy = tf.get_collection("save")
+            self.input, self.energy = tf.get_collection("save")
