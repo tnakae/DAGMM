@@ -190,6 +190,8 @@ class DAGMM:
         fdir : str
             Path of directory trained model is saved.
         """
+        if not exists(fdir):
+            raise Exception("Model directory does not exist.")
 
         model_path = join(fdir, self.MODEL_FILENAME)
         meta_path = model_path + ".meta"
