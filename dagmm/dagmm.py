@@ -25,7 +25,7 @@ class DAGMM:
     def __init__(self, comp_hiddens, comp_activation,
             est_hiddens, est_activation, est_dropout_ratio=0.5,
             minibatch_size=1024, epoch_size=100,
-            learning_rate=0.0001, lambda1=0.1, lambda2=0.005,
+            learning_rate=0.0001, lambda1=0.1, lambda2=0.0001,
             normalize=True, random_seed=123):
         """
         Parameters

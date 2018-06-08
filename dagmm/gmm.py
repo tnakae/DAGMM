@@ -49,7 +49,7 @@ class GMM:
 
             # Calculate a cholesky decomposition of covariance in advance
             n_features = z.shape[1]
-            min_vals = tf.diag(tf.ones(n_features, dtype=tf.float32)) * 1e-3
+            min_vals = tf.diag(tf.ones(n_features, dtype=tf.float32)) * 1e-6
             self.L = tf.cholesky(sigma + min_vals[None,:,:])
 
         self.training = False
@@ -114,8 +114,9 @@ class GMM:
             log_det_sigma = 2.0 * tf.reduce_sum(tf.log(tf.matrix_diag_part(self.L)), axis=1)
 
             # To calculate energies, use "log-sum-exp" (different from orginal paper)
+            d = z.get_shape().as_list()[1]
             logits = tf.log(self.phi[:,None]) - 0.5 * (tf.reduce_sum(tf.square(v), axis=1)
-                + tf.log(2.0 * np.pi) + log_det_sigma[:,None])
+                + d * tf.log(2.0 * np.pi) + log_det_sigma[:,None])
             energies = - tf.reduce_logsumexp(logits, axis=0)
 
         return energies
