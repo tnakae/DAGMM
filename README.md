@@ -81,7 +81,14 @@ Instead, this implementation uses cholesky decomposition of covariance matrix.
 In ``DAGMM.fit()``, it generates and stores triangular matrix of cholesky decomposition
 of covariance matrix, and it is used in ``DAGMM.predict()``,
 
-In addition to it, small perturbation (1e-3) is added to diagonal
+In addition to it, small perturbation (1e-6) is added to diagonal
 elements of covariance matrix for more numerical stability
 (it is same as Tensorflow GMM implementation,
 and [another author of DAGMM](https://github.com/danieltan07/dagmm) also points it out)
+
+## Parameter of GMM Covariance ($\lambda_2$)
+Default value of $\lambda_2$ is set to 0.0001 (0.005 in original paper).
+When $\lambda_2$ is 0.005, covariances of GMM becomes too large to detect
+anomaly points. But perhaps it depends on data and preprocessing
+(for example a method of normalization). Recommended control $\lambda_2$
+when performance metrics is not good.
