@@ -65,8 +65,13 @@ model.restore("./fitted_model")
 ```
 
 ## Jupyter Notebook Example
-You can use [jupyter notebook example](Example_DAGMM.ipynb).
+You can use next jupyter notebook examples using DAGMM model.
+- [Simple DAGMM Example notebook](Example_DAGMM.ipynb) :
 This example uses random samples of mixture of gaussian.
+If you want to know simple usage, this notebook is recommended.
+- [KDDCup99 10% Data Evaluation](KDDCup99.ipynb) :
+Performance evaluation of anomaly detection for KDDCup99 10% Data
+with the same condition of original paper (need pandas)
 
 # Notes
 ## GMM Implementation
@@ -86,9 +91,9 @@ elements of covariance matrix for more numerical stability
 (it is same as Tensorflow GMM implementation,
 and [another author of DAGMM](https://github.com/danieltan07/dagmm) also points it out)
 
-## Parameter of GMM Covariance ($\lambda_2$)
-Default value of $\lambda_2$ is set to 0.0001 (0.005 in original paper).
-When $\lambda_2$ is 0.005, covariances of GMM becomes too large to detect
-anomaly points. But perhaps it depends on data and preprocessing
-(for example a method of normalization). Recommended control $\lambda_2$
+## Parameter of GMM Covariance (lambda_2)
+Default value of lambda_2 is set to 0.0001 (0.005 in original paper).
+When lambda_2 is 0.005, covariances of GMM becomes too large to detect
+anomaly points. But perhaps it depends on distribution of data and method of preprocessing
+(for example a method of normalization). Recommend to control lambda_2
 when performance metrics is not good.
