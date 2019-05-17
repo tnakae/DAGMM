@@ -46,10 +46,10 @@ class EstimationNet:
             for size in self.hidden_layer_sizes[:-1]:
                 n_layer += 1
                 z = tf.layers.dense(z, size, activation=self.activation,
-                    name=f"layer_{n_layer}")
+                    name="layer_{}".format(n_layer))
                 if dropout_ratio is not None:
                     z = tf.layers.dropout(z, dropout_ratio,
-                        name=f"drop_{n_layer}")
+                        name="drop_{}".format(n_layer))
 
             # Last layer uses linear function (=logits)
             size = self.hidden_layer_sizes[-1]

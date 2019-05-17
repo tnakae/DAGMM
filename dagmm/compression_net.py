@@ -35,12 +35,12 @@ class CompressionNet:
             for size in self.hidden_layer_sizes[:-1]:
                 n_layer += 1
                 z = tf.layers.dense(z, size, activation=self.activation,
-                    name=f"layer_{n_layer}")
+                    name="layer_{}".format(n_layer))
 
             # activation function of last layer is linear
             n_layer += 1
             z = tf.layers.dense(z, self.hidden_layer_sizes[-1],
-                name=f"layer_{n_layer}")
+                name="layer_{}".format(n_layer))
 
         return z
 
@@ -50,12 +50,12 @@ class CompressionNet:
             for size in self.hidden_layer_sizes[:-1][::-1]:
                 n_layer += 1
                 z = tf.layers.dense(z, size, activation=self.activation,
-                    name=f"layer_{n_layer}")
+                    name="layer_{}".format(n_layer))
 
             # activation function of last layes is linear
             n_layer += 1
             x_dash = tf.layers.dense(z, self.input_size,
-                name=f"layer_{n_layer}")
+                name="layer_{}".format(n_layer))
 
         return x_dash
 
