@@ -9,7 +9,7 @@ DAGMM (Deep Autoencoding Gaussian Mixture Model) の Tensorflow 実装です。
 ※この実装は論文著者とは無関係です。
 
 # 動作要件
-- python 3
+- python >= 3.5
 - Tensorflow
 - Numpy
 - sklearn

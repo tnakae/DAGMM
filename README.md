@@ -8,7 +8,7 @@ This implementation is based on the paper
 this is UNOFFICIAL implementation.
 
 # Requirements
-- python 3
+- python >= 3.5
 - Tensorflow
 - Numpy
 - sklearn
