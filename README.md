@@ -8,8 +8,8 @@ This implementation is based on the paper
 this is UNOFFICIAL implementation.
 
 # Requirements
-- python >= 3.5
-- Tensorflow
+- python (3.5-3.6)
+- Tensorflow <= 1.15
 - Numpy
 - sklearn
 
