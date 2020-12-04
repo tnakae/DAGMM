@@ -1,0 +1,5 @@
+version: "3"
+services:
+  dagmm:
+    build: .
+    image: tnakae/dagmm:1.0
